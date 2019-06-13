@@ -1,0 +1,50 @@
+Sub Homework_Easy()
+
+'Clear all to rerun the macros during testing
+Columns("I:Q").Select
+Selection.Clear
+
+'Defining variables
+Dim RowStart As Double
+Dim TotalVolumes As Double
+
+
+ 
+'Create headers for the consolidated report
+
+Cells(1, 9).Value = "Stock Symbol"
+Cells(1, 10).Value = "Total Stock Volumes"
+RowStart = 2
+Cells(RowStart, 9).Value = Cells(RowStart, 1).Value
+
+'Defining LastRow funtion
+LastRow = Cells(Rows.Count, 1).End(xlUp).Row
+
+'Loop to consolidate TotalVolumes for a Stock
+
+
+    For i = 2 To LastRow
+        If Cells(i, 1).Value = Cells(RowStart, 9).Value Then
+
+        TotalVolumes = TotalV + Cells(i, 7).Value
+
+        Else
+        Cells(RowStart, 10).Value = TotalVolumes
+
+        TotalVolumes = Cells(i, 7).Value
+
+        RowStart = RowStart + 1
+        Cells(RowStart, 9).Value = Cells(i, 1).Value
+
+        End If
+
+    Next i
+    Cells(RowStart, 10).Value = TotalVolumes
+    Cells(1, 9).Value = "Stock Symbol"
+    Cells(1, 10).Value = "Total Stock Volumes"
+
+'resize columns and position cursor in Cells(1,1)
+Columns("I:Q").EntireColumn.AutoFit
+Cells(1, 1).Select
+
+End Sub
