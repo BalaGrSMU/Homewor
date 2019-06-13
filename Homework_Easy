@@ -17,7 +17,7 @@ Cells(1, 10).Value = "Total Stock Volumes"
 RowStart = 2
 Cells(RowStart, 9).Value = Cells(RowStart, 1).Value
 
-'Defining LastRow funtion
+'Defining LastRow function
 LastRow = Cells(Rows.Count, 1).End(xlUp).Row
 
 'Loop to consolidate TotalVolumes for a Stock
@@ -26,7 +26,7 @@ LastRow = Cells(Rows.Count, 1).End(xlUp).Row
     For i = 2 To LastRow
         If Cells(i, 1).Value = Cells(RowStart, 9).Value Then
 
-        TotalVolumes = TotalV + Cells(i, 7).Value
+        TotalVolumes = TotalVolumes + Cells(i, 7).Value
 
         Else
         Cells(RowStart, 10).Value = TotalVolumes
